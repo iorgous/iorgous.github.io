@@ -1,0 +1,75 @@
+.listitem {
+color:red;
+font-size:20px;
+}
+
+.paragraph {
+color:black;
+font-size:1.5em;
+}
+
+p{
+color: purple;
+font-size: 20px;
+}
+
+#background {
+background-color: purple;
+}
+
+#button {
+width:250px;
+height:70px;
+color:white;
+background-color:purple;
+border-radius:15px;
+}
+
+header {
+height:70px;
+width:78%;
+border:2px solid white;
+background-color:#bcf4f4;
+}
+
+footer {
+height:40px;
+width:78%;
+border:2px white;
+background-color:#bcf4f4;
+}
+
+.wrap-trivia {
+height:500px;
+width:450px;
+border:5px white;
+}
+
+.wrap-list {
+height:50px;
+width:450px;
+border:10px white;
+}
+
+.wrap-text {
+color: white;
+font-size: 1.5em;
+}
+
+#one{
+height: 75px;
+width: 150px;
+background-color: #bcf4f4;
+}
+
+#two{
+height: 75px;
+width: 150px;
+background-color: #bcf4f4;
+}
+
+#three{
+height: 75px;
+width: 150px;
+background-color: #bcf4f4;
+}
