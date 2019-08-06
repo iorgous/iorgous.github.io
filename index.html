@@ -1,106 +1,11 @@
-<html>
+<html> 
 <head>
-<title> Pizza Pass </title>  
-<script src="https://simplycoding.org/files/simplyjs/simply.js"></script>  
-<script>  
-function start(){
-          sjs.open("target",600,400);
-          var background = new sjs.Image("https://s3-us-west-2.amazonaws.com/simplycoding/Java/Eclipse.png");
-          background.setSize(600, 400);
+<title> Portfolio </title> 
+</head> 
+<body> 
+<h1> My Portfolio </h1> 
 
-          var one = new sjs.Image("");
-          one.setSize(150,350);
-          one.moveTo(0,30);
-          one.node.style.opacity = 0;
+<a href="Website/index.html">My First Website Project</a> 
 
-          one.node.onmouseover = function(){
-            var onet = new sjs.Text("This is the Package Explorer, it will let you navigate through your folders and files. When you want to view / edit a file, double click on it to have it displayed in the text editor (area 2)!", 15, "brown");
-            onet.node.style.fontWeight = "bold";
-            onet.node.style.width = "130px";
-            onet.moveTo(14,130);
-            
-             one.node.onmouseout = function(){
-                onet.destroy();
-              }
-          }
-
-          var two = new sjs.Image("");
-          two.setSize(340,265);
-          two.moveTo(150,30);
-          two.node.style.opacity = 0;
-
-          two.node.onmouseover = function(){
-            var twot = new sjs.Text("This is the text editor. This is where you can view your files and write your Java Code!!!", 15, "green");
-            twot.node.style.fontWeight = "bold";
-            twot.node.style.width = "190px";
-            twot.moveTo(224,130);
-            
-             two.node.onmouseout = function(){
-                twot.destroy();
-              }
-          }
-
-          var three = new sjs.Image("");
-          three.setSize(450,105);
-          three.moveTo(150,330);
-          three.node.style.opacity = 0;
-
-          three.node.onmouseover = function(){
-            var threet = new sjs.Text("This is the Console. When you run your code you'll see the results here!", 15, "orange");
-            threet.node.style.fontWeight = "bold";
-            threet.node.style.width = "190px";
-            threet.moveTo(290,310);
-            
-             three.node.onmouseout = function(){
-                threet.destroy();
-              }
-          }
-
-          var four = new sjs.Image("");
-          four.setSize(110,135);
-          four.moveTo(550,30);
-          four.node.style.opacity = 0;
-
-          four.node.onmouseover = function(){
-            var fourt = new sjs.Text("Never Used this area. Just close it out.", 15, "grey");
-            fourt.node.style.fontWeight = "bold";
-            fourt.node.style.width = "90px";
-            fourt.moveTo(500,80);
-            
-             four.node.onmouseout = function(){
-                fourt.destroy();
-              }
-          }
-
-           var five = new sjs.Image("");
-          five.setSize(110,130);
-          five.moveTo(550,165);
-          five.node.style.opacity = 0;
-
-          five.node.onmouseover = function(){
-            var fivet = new sjs.Text("Never Used this area. Just close it out.", 15, "black");
-            fivet.node.style.fontWeight = "bold";
-            fivet.node.style.width = "90px";
-            fivet.moveTo(500,200);
-            
-             five.node.onmouseout = function(){
-                fivet.destroy();
-              }
-          }
-
-
-
-
-        }
- 
- 
- 
- 
- 
-</script>  
-</head>  
-<body onload ="start()">  
-<h1> Pong Game </h1>  
-<div id="target" style="margin:auto;background:grey;"></div>  
-</body>  
+</body> 
 </html> 
