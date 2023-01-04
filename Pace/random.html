@@ -1,0 +1,127 @@
+<html>
+<head>
+<title> Randomizer  </title>
+<style>
+    #body{
+        margin: auto;
+        width:95%;
+        background-color: silver;
+        border-radius: 5px;
+        height:850px;
+    }
+
+    #Banner{
+        border: 4px solid blue;
+        background-color: red;
+        border-radius: 10px;
+        font-size: 2.5em;
+        padding: 20px;
+        color: white;
+        text-align: center;
+    }
+    .dazzle{
+    font-size: 70px;
+      color: #ffffff;
+      text-align: center;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @-webkit-keyframes glow {
+      from {
+        text-shadow: 0 0 10px #eeeeee, 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 
+                     0 0 50px #9554b3, 0 0 60px #9554b3, 0 0 70px #9554b3;
+      }
+      to {
+        text-shadow: 0 0 20px #eeeeee, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 
+                     0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      }
+    }
+
+    .white {
+        color:blue;
+        margin-left: 5%;
+    }
+
+    .btn {
+        margin-left:5%;
+        width:74px;
+    }
+</style>
+
+<script type="text/javascript">
+    var ymyw = ["Audrey Long","Addie Tonkinson","Christina Baltimore","Madison Chapman","Rylee Hawkins","Avey Riggs","Addie Bell","Rylee Carter","Leah Iorg","Mya Stapleton","Christian Baltimore","Riley Boshard","Rickey Caudell","Torrin Lund","Alex Mendez","Colton Stutsy","Kyle Chapman","Bowen Iorg","Jaydon Melton","Jaden Stahura","Garrett Stapleton","Tagg Strickenberger", "Owen Carter","Harrison Matthys","Hudson Stahura"];
+
+    var yw = ["Audrey","Addie T.","Christina","Madison","Rylee H.","Avey","Addie B.","Rylee C","Leah","Mya"];
+
+    var ym = ["Christian","Riley B","Rickey C","Torrin","Alex","Colton","Kyle","Bowen","Jaydon M","Jaden S","Garrett","Tagg","Owen","Harrison","Hudson"];
+
+
+    function go(){
+        var ran = Math.floor(Math.random()*ymyw.length);
+        
+        setTimeout(function(){
+            var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1>";
+        },100);
+
+        setTimeout(function(){
+            var po = document.querySelector('#post').innerHTML = "<h1>for next weeks Spiritual thought</h1>";
+        },1700);
+
+        setTimeout(function(){
+            var po = document.querySelector('#post').innerHTML = "<h1>to share with us all from the Strength of Youth</h1>";
+        },3600);
+
+        setTimeout(function(){
+            var po = document.querySelector('#post').innerHTML = "<h1>is none other than our dear friend</h1>";
+        },5500);
+
+        setTimeout(function(){
+            var po = document.querySelector('#post').innerHTML = "<h1>and all around good person</h1>";
+        },7400);
+
+        setTimeout(function(){
+            var po = document.querySelector('#post').innerHTML = "<h1>So... here's the reveal</h2>";
+        },9300);
+
+        setTimeout(function(){
+            var po = document.querySelector('#post').innerHTML = "<h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
+        },11200);
+
+        
+        // alert(x);
+    }
+
+</script>
+
+</head>
+<body>
+<div id="body">
+<div id="Banner">
+PACE WARD SPIRITUAL THOUGHT Random Picker
+</div>
+
+
+<div>
+<h1 class="white"> The Random Generator? </h1>
+<input class="btn" type="button" onclick="go()" value="ALL" />
+<input class="btn" type="button" onclick="gone()" value="YM" />
+<input class="btn" type="button" onclick="get()" value="YW" />
+<br><br><br>
+<center>
+<div id="post"></div>
+</center>
+</div>
+<br><br>
+<div>
+<h2 class="white"><u>Past Spiritual Thoughts</u></h2>
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>
