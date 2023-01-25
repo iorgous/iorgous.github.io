@@ -107,11 +107,11 @@
         // alert(x);
     }
 
+    var audio = new Audio("JOHNCENA.mp3");
     function gone(){
         var ran = Math.floor(Math.random()*yw.length);
         var po = document.querySelector('#post').innerHTML = "<h1 style='color:blue' class='dazzle'>" + yw[ran] + "</h1>";
         if(yw[ran]=="John Cena"){
-              var audio = new Audio("JOHNCENA.mp3");
               audio.play();
             }
 
