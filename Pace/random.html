@@ -56,11 +56,11 @@
 </style>
 
 <script type="text/javascript">
-    var ymyw = ["Audrey Long","Addie Tonkinson","Christina Baltimore","Madison Chapman","Rylee Hawkins","Avey Riggs","Addie Bell","Rylee Carter","Leah Iorg","Mya Stapleton","Christian Baltimore","Riley Boshard","Rickey Caudell","Torrin Lund","Alex Mendez","Colton Stutsy","Kyle Chapman","Bowen Iorg","Jaydon Melton","Jaden Stahura","Garrett Stapleton","Tagg Strickenberger", "Owen Carter","Harrison Matthys","Hudson Stahura"];
+    var ymyw = ["Audrey Long","Addie Tonkinson","Christina Baltimore","Madison Chapman",/*"Rylee Hawkins",*/"Avey Riggs","Addie Bell","Rylee Carter","Leah Iorg","Mya Stapleton",/*"Christian Baltimore",*/"Riley Boshard","Rickey Caudell","Torrin Lund",/*"Alex Mendez",*/"Colton Stutsy","Kyle Chapman","Bowen Iorg","Jaydon Melton","Jaden Stahura","Garrett Stapleton","Tagg Strickenberger", "Owen Carter","Harrison Matthys","Hudson Stahura", "Chance Donohoe","Aaron Wheeler", "JOHN CENA"];
 
-    var yw = ["Audrey","Addie T.","Christina","Madison","Rylee H.","Avey","Addie B.","Rylee C","Leah","Mya"];
+    var yw = ["John Cena"];
 
-    var ym = ["Christian","Riley B","Rickey C","Torrin","Alex","Colton","Kyle","Bowen","Jaydon M","Jaden S","Garrett","Tagg","Owen","Harrison","Hudson"];
+   
 
 
     function go(){
@@ -79,23 +79,42 @@
         },3700);
 
         setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1>is none other than our dear friend</h1>";
+            var po = document.querySelector('#post').innerHTML = "<h1>In this very room</h1>";
         },5900);
 
         setTimeout(function(){
+            var po = document.querySelector('#post').innerHTML = "<h1>is none other than our dear friend</h1>";
+        },8000);
+
+        setTimeout(function(){
             var po = document.querySelector('#post').innerHTML = "<h1>and all around good person</h1>";
-        },7800);
+        },10000);
 
         setTimeout(function(){
             var po = document.querySelector('#post').innerHTML = "<h1>So... here's the reveal</h2>";
-        },9700);
+        },11200);
 
         setTimeout(function(){
             var po = document.querySelector('#post').innerHTML = "<h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
-        },11800);
+
+            if(ymyw[ran]=="JOHN CENA"){
+              var audio = new Audio("JOHNCENA.mp3");
+              audio.play();
+            }
+        },13800);
 
         
         // alert(x);
+    }
+
+    function gone(){
+        var ran = Math.floor(Math.random()*yw.length);
+        var po = document.querySelector('#post').innerHTML = "<h1 style='color:blue' class='dazzle'>" + yw[ran] + "</h1>";
+        if(yw[ran]=="John Cena"){
+              var audio = new Audio("JOHNCENA.mp3");
+              audio.play();
+            }
+
     }
 
 </script>
@@ -111,8 +130,8 @@ PACE WARD SPIRITUAL THOUGHT Random Picker
 <div>
 <h1 class="white"> The Random Generator? </h1>
 <input class="btn" type="button" onclick="go()" value="ALL" />
-<input class="btn" type="button" onclick="gone()" value="YM" />
-<input class="btn" type="button" onclick="get()" value="YW" />
+<input class="btn" type="button" onclick="gone()" value="John Cena" />
+
 <br><br><br>
 <center>
 <div id="post"></div>
@@ -120,9 +139,11 @@ PACE WARD SPIRITUAL THOUGHT Random Picker
 </div>
 <br><br>
 <div>
-<h2 class="white"><u>Past Spiritual Thoughts</u></h2>
-<p class="rw">Seth Iorg</p>
-
+    <h2 class="white"><u>Past Spiritual Thoughts</u></h2>
+    <p class="rw">Seth Iorg</p>
+    <p class="rw">Alex Mendez</p>
+    <p class="rw">Christian Baltimore</p>
+    <p class="rw">Rylee Hawkins</p>
 </div>
 
 
