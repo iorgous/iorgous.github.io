@@ -60,7 +60,7 @@
 
     var yw = ["John Cena"];
 
-   
+   var audio = new Audio("https://iorgous.github.io/Pace/JOHNCENA.mp3");
 
     function test(){
     
@@ -115,8 +115,14 @@
             var ran = Math.floor(Math.random()*ymyw.length);
             var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1><h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
             },370);
-        setTimeout(function(){
+        setTimeout(function(ran){
+             if(ymyw[ran]=="John Cena"){
+              audio.play();
+            } else {
+                audio.play();
+            }
             clearInterval(s);
+
         },1000);
     }
 
@@ -165,7 +171,7 @@
     //     // alert(x);
     // }
 
-    var audio = new Audio("https://iorgous.github.io/Pace/JOHNCENA.mp3");
+    
 
     function gone(){
         var ran = Math.floor(Math.random()*yw.length);
