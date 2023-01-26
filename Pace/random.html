@@ -62,58 +62,117 @@
 
    
 
+    function test(){
+    
+    var white = document.querySelector('#joe').innerHTML = "<img src='white.png'/>";
 
-    function go(){
-        var ran = Math.floor(Math.random()*ymyw.length);
-        
-        setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1>";
+        var showy = setInterval(function(){
+            var ran = Math.floor(Math.random()*ymyw.length);
+            var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1><h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
         },100);
-
         setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1>for next weeks Spiritual thought</h1>";
-        },1700);
+            clearInterval(showy);
+            next();
+        },3000);
 
-        setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1>to share with us all from the Strength of Youth</h1>";
-        },3700);
-
-        setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1>In this very room</h1>";
-        },5900);
-
-        setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1>is none other than our dear friend</h1>";
-        },8000);
-
-        setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1>and all around good person</h1>";
-        },10000);
-
-        setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1>So... here's the reveal</h2>";
-        },11200);
-
-        setTimeout(function(){
-            var po = document.querySelector('#post').innerHTML = "<h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
-
-            if(ymyw[ran]=="JOHN CENA"){
-              var audio = new Audio("JOHNCENA.mp3");
-              audio.play();
-            }
-        },13800);
-
-        
-        // alert(x);
     }
 
+    function next(){
+        var show = setInterval(function(){
+            var ran = Math.floor(Math.random()*ymyw.length);
+            var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1><h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
+            },175);
+        setTimeout(function(){
+            clearInterval(show);
+            nex();
+        },2500);
+    }
+
+    function nex(){
+        var sho = setInterval(function(){
+            var ran = Math.floor(Math.random()*ymyw.length);
+            var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1><h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
+            },225);
+        setTimeout(function(){
+            clearInterval(sho);
+            ne();
+        },2000);
+    }
+
+    function ne(){
+        var sh = setInterval(function(){
+            var ran = Math.floor(Math.random()*ymyw.length);
+            var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1><h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
+            },300);
+        setTimeout(function(){
+            clearInterval(sh);
+            n();
+        },1500);
+    }
+
+    function n(){
+        var s = setInterval(function(){
+            var ran = Math.floor(Math.random()*ymyw.length);
+            var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1><h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
+            },370);
+        setTimeout(function(){
+            clearInterval(s);
+        },1000);
+    }
+
+
+    // function go(){
+    //     var ran = Math.floor(Math.random()*ymyw.length);
+        
+    //     setTimeout(function(){
+    //         var po = document.querySelector('#post').innerHTML = "<h1>And the lucky person is...</h1>";
+    //     },100);
+
+    //     setTimeout(function(){
+    //         var po = document.querySelector('#post').innerHTML = "<h1>for next weeks Spiritual thought</h1>";
+    //     },1700);
+
+    //     setTimeout(function(){
+    //         var po = document.querySelector('#post').innerHTML = "<h1>to share with us all from the Strength of Youth</h1>";
+    //     },3700);
+
+    //     setTimeout(function(){
+    //         var po = document.querySelector('#post').innerHTML = "<h1>In this very room</h1>";
+    //     },5900);
+
+    //     setTimeout(function(){
+    //         var po = document.querySelector('#post').innerHTML = "<h1>is none other than our dear friend</h1>";
+    //     },8000);
+
+    //     setTimeout(function(){
+    //         var po = document.querySelector('#post').innerHTML = "<h1>and all around good person</h1>";
+    //     },10000);
+
+    //     setTimeout(function(){
+    //         var po = document.querySelector('#post').innerHTML = "<h1>So... here's the reveal</h2>";
+    //     },12200);
+
+    //     setTimeout(function(){
+    //         var po = document.querySelector('#post').innerHTML = "<h1 style='color:blue' class='dazzle'>" + ymyw[ran] + "</h1>";
+
+    //         if(ymyw[ran]=="JOHN CENA"){
+    //           var audio = new Audio("JOHNCENA.mp3");
+    //           audio.play();
+    //         }
+    //     },14000);
+
+        
+    //     // alert(x);
+    // }
+
     var audio = new Audio("JOHNCENA.mp3");
+
     function gone(){
         var ran = Math.floor(Math.random()*yw.length);
         var po = document.querySelector('#post').innerHTML = "<h1 style='color:blue' class='dazzle'>" + yw[ran] + "</h1>";
         if(yw[ran]=="John Cena"){
               audio.play();
-            }
+        }
 
     }
 
@@ -129,7 +188,7 @@ PACE WARD SPIRITUAL THOUGHT Random Picker
 
 <div>
 <h1 class="white"> The Random Generator? </h1>
-<input class="btn" type="button" onclick="go()" value="ALL" />
+<input class="btn" type="button" onclick="test()" value="ALL" />
 <input class="btn" type="button" onclick="gone()" value="John Cena" />
 
 <br><br><br>
@@ -148,6 +207,6 @@ PACE WARD SPIRITUAL THOUGHT Random Picker
 
 
 </div>
-
+<p id="joe"></p>
 </body>
 </html>
