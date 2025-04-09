@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic Randomizer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .randomizer {
+            margin: 20px 0 40px;
+            padding: 20px;
+            border: 3px solid #3498db;
+            border-radius: 8px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .topic {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: transform 0.3s ease;
+            position: absolute;
+            opacity: 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .topic.active {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .topic-content {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+
+        .topic-content h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .topic-content p {
+            line-height: 1.6;
+            color: #34495e;
+        }
+
+        .reset-btn {
+            background-color: #e74c3c;
+            margin-top: 20px;
+        }
+
+        .reset-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Topic Randomizer</h1>
+        <div class="randomizer" id="randomizer">
+            <div class="topic active">Click Start to Begin</div>
+        </div>
+        <button id="startBtn" class="btn">Start Randomizer</button>
+        <button id="resetBtn" class="btn reset-btn" style="display: none;">Reset</button>
+        
+        <div id="topicContent" class="topic-content">
+            <h2 id="contentTitle"></h2>
+            <div id="contentText"></div>
+        </div>
+    </div>
+
+    <script>
+        // List of topics
+        const topics = [
+            "Abrahamic Covenant",
+            "Mental Health",
+            "Addiction Recovery",
+            "Agency and Accountability",
+            "Apostasy",
+            "Atonement of Jesus Christ",
+            "Baptism",
+            "Baptisms for the Dead",
+            "Book of Mormon",
+            "Charity",
+            "Chastity",
+            "Commandments",
+            "Conversion",
+            "Creation",
+            "Cross",
+            "Dating",
+            "Death",
+            "Easter",
+            "Endowment",
+            "Eternal Life",
+            "Faith in Jesus Christ",
+            "Family History",
+            "Fasting",
+            "First Vision",
+            "Forgiveness",
+            "Godhead",
+            "Grace",
+            "Holy Ghost",
+            "Light of Christ",
+            "Mercy",
+            "Modesty",
+            "Music",
+            "Revelation",
+            "Testimony",
+            "Sabbath Day",
+            "Prophets and Apostles",
+            "Temple",
+            "Tithing",
+            "Word of Wisdom"
+        ];
+
+        // Topic content - Add your content for each topic here
+        const topicContent = {
+            "Abrahamic Covenant": "The Abrahamic Covenant refers to the promises God made to Abraham, including numerous posterity, land inheritance, and blessings for all nations through his seed.",
+            "Mental Health": "Mental health encompasses emotional, psychological, and social well-being, affecting how we think, feel, act, handle stress, relate to others, and make choices.",
+            "Addiction Recovery": "Addiction recovery is the process of overcoming dependence on substances or behaviors through therapy, support groups, and personal commitment to change.",
+            "Agency and Accountability": "Agency is the gift of moral freedom to choose, while accountability refers to our responsibility for those choices and their consequences.",
+            "Apostasy": "Apostasy refers to the falling away from or abandonment of religious belief and principles, either individually or collectively.",
+            "Atonement of Jesus Christ": "The Atonement of Jesus Christ is His suffering in Gethsemane and death on the cross that allows humans to be forgiven of sins and return to God.",
+            "Baptism": "Baptism is an essential ordinance performed by immersion in water, symbolizing spiritual rebirth and commitment to follow Jesus Christ.",
+            "Baptisms for the Dead": "Baptisms for the dead are performed by proxy in temples, offering the ordinance of baptism to those who died without the opportunity to receive it.",
+            "Book of Mormon": "The Book of Mormon is scripture that testifies of Jesus Christ and complements the Bible as a witness of God's dealings with ancient inhabitants of the Americas.",
+            "Charity": "Charity is the pure love of Christ, encompassing selfless concern for others and a willingness to serve without expectation of reward.",
+            "Chastity": "Chastity is sexual purity, including abstinence before marriage and complete fidelity within marriage, reflecting respect for sacred powers of procreation.",
+            "Commandments": "Commandments are divine instructions from God that provide guidance for righteous living and lead to blessings when obeyed.",
+            "Conversion": "Conversion is the spiritual process of changing beliefs, heart, and life to align with God's will through faith, repentance, and commitment.",
+            "Creation": "Creation refers to God's formation of the heavens and earth, providing a place for His children to gain physical bodies and be tested.",
+            "Cross": "The cross represents Christ's crucifixion and sacrifice, symbolizing the atonement, divine love, and the path to salvation.",
+            "Dating": "Dating involves developing relationships that can lead to marriage, requiring wisdom, respect, and adherence to standards of virtue.",
+            "Death": "Death is the separation of the spirit from the mortal body, a necessary step in God's plan that enables transition to the spirit world.",
+            "Easter": "Easter commemorates Jesus Christ's resurrection, celebrating His victory over death and the promise of immortality for all humanity.",
+            "Endowment": "The temple endowment is a sacred ordinance involving covenants with God and teachings about the plan of salvation and exaltation.",
+            "Eternal Life": "Eternal life means living forever in God's presence, enjoying family relationships, and continual growth and progression.",
+            "Faith in Jesus Christ": "Faith in Jesus Christ is trust in Him as the Son of God and Savior, acting on belief through obedience to His teachings.",
+            "Family History": "Family history involves researching ancestors and their stories, connecting generations and preparing names for temple ordinances.",
+            "Fasting": "Fasting is voluntarily abstaining from food and drink for spiritual purposes, often accompanied by prayer and charitable donations.",
+            "First Vision": "The First Vision was Joseph Smith's divine encounter with God the Father and Jesus Christ, marking the beginning of the Restoration.",
+            "Forgiveness": "Forgiveness means releasing resentment toward those who have wronged us and seeking reconciliation with those we have offended.",
+            "Godhead": "The Godhead consists of three distinct beings: God the Father, Jesus Christ, and the Holy Ghost, who are one in purpose and love.",
+            "Grace": "Grace is divine help and strength given through Christ's atonement, enabling us to do good works beyond our natural abilities.",
+            "Holy Ghost": "The Holy Ghost is the third member of the Godhead who testifies of truth, provides comfort, and guides believers in righteousness.",
+            "Light of Christ": "The Light of Christ is divine influence given to all people, helping them distinguish right from wrong and leading them to greater truth.",
+            "Mercy": "Mercy is compassionate treatment shown toward sinners by God, mitigating justice through Christ's atonement when we repent.",
+            "Modesty": "Modesty involves dressing, speaking, and behaving in ways that reflect respect for oneself and others as children of God.",
+            "Music": "Sacred music uplifts the soul, invites the Spirit, and expresses devotion to God through harmonious sounds and inspired lyrics.",
+            "Revelation": "Revelation is divine communication from God to His children, coming through impressions, visions, dreams, or angelic messengers.",
+            "Testimony": "A testimony is personal conviction of gospel truths gained through the Holy Ghost, strengthened through study, prayer, and righteous living.",
+            "Sabbath Day": "The Sabbath Day is a weekly day of rest and worship, set apart to remember God, attend church, and serve others.",
+            "Prophets and Apostles": "Prophets and Apostles are divinely called representatives who receive revelation to guide the Church and testify of Jesus Christ.",
+            "Temple": "Temples are sacred buildings where special ordinances are performed, connecting families eternally and bringing worshippers closer to God.",
+            "Tithing": "Tithing is giving one-tenth of one's income to God's work, demonstrating faith and helping build the kingdom of God on earth.",
+            "Word of Wisdom": "The Word of Wisdom is a health code revealed by God, counseling abstinence from harmful substances and promoting nutritious foods."
+        };
+
+        // DOM elements
+        const randomizerElement = document.getElementById('randomizer');
+        const startButton = document.getElementById('startBtn');
+        const resetButton = document.getElementById('resetBtn');
+        const topicContentElement = document.getElementById('topicContent');
+        const contentTitleElement = document.getElementById('contentTitle');
+        const contentTextElement = document.getElementById('contentText');
+
+        // Animation variables
+        let animationId;
+        let isRandomizing = false;
+        let selectedTopic = '';
+        let startTime;
+        let duration = 8000; // 8 seconds
+        let currentTopicIndex = 0;
+        let interval = 100; // starting interval (fast)
+
+        // Create topic elements
+        function createTopicElements() {
+            randomizerElement.innerHTML = '';
+            const initialTopic = document.createElement('div');
+            initialTopic.className = 'topic active';
+            initialTopic.textContent = 'Click Start to Begin';
+            randomizerElement.appendChild(initialTopic);
+        }
+
+        // Initialize on load
+        window.onload = createTopicElements;
+
+        // Start randomization
+        startButton.addEventListener('click', function() {
+            if (isRandomizing) return;
+            
+            isRandomizing = true;
+            startButton.disabled = true;
+            topicContentElement.style.display = 'none';
+            
+            startTime = Date.now();
+            animateTopic();
+        });
+
+        // Reset the randomizer
+        resetButton.addEventListener('click', function() {
+            resetRandomizer();
+        });
+
+        // Animate through topics
+        function animateTopic() {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Gradually slow down as we approach the end
+            // Start fast and slow down exponentially
+            interval = 100 + Math.floor(400 * Math.pow(progress, 2));
+            
+            // Clear previous topic
+            randomizerElement.innerHTML = '';
+            
+            // Select a topic to show
+            currentTopicIndex = Math.floor(Math.random() * topics.length);
+            const currentTopic = topics[currentTopicIndex];
+            
+            // Create and show the topic
+            const topicElement = document.createElement('div');
+            topicElement.className = 'topic active';
+            topicElement.textContent = currentTopic;
+            randomizerElement.appendChild(topicElement);
+            
+            // Check if we should continue
+            if (progress < 1) {
+                // Continue animation
+                animationId = setTimeout(animateTopic, interval);
+            } else {
+                // End animation
+                finishRandomization(currentTopic);
+            }
+        }
+
+        // Finish the randomization
+        function finishRandomization(topic) {
+            isRandomizing = false;
+            selectedTopic = topic;
+            
+            // Display the selected topic with a highlight effect
+            randomizerElement.innerHTML = '';
+            const finalTopicElement = document.createElement('div');
+            finalTopicElement.className = 'topic active';
+            finalTopicElement.textContent = selectedTopic;
+            finalTopicElement.style.fontSize = '36px';
+            finalTopicElement.style.color = '#e74c3c';
+            randomizerElement.appendChild(finalTopicElement);
+            
+            // Show the content for the selected topic
+            showTopicContent(selectedTopic);
+            
+            // Show reset button, hide start button
+            startButton.style.display = 'none';
+            resetButton.style.display = 'inline-block';
+        }
+
+        // Show content for the selected topic
+        function showTopicContent(topic) {
+            contentTitleElement.textContent = topic;
+            
+            // Get content for the topic or show a default message
+            const content = topicContent[topic] || "Content for this topic is not available yet.";
+            contentTextElement.innerHTML = `<p>${content}</p>`;
+            
+            // Display the content section
+            topicContentElement.style.display = 'block';
+        }
+
+        // Reset the randomizer
+        function resetRandomizer() {
+            clearTimeout(animationId);
+            isRandomizing = false;
+            selectedTopic = '';
+            
+            // Reset UI
+            createTopicElements();
+            topicContentElement.style.display = 'none';
+            startButton.disabled = false;
+            startButton.style.display = 'inline-block';
+            resetButton.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
